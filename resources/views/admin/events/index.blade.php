@@ -36,6 +36,7 @@
             table { min-width: 680px; }
         }
     </style>
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 </head>
 <body>
 <header>
@@ -54,7 +55,7 @@
     <div class="toolbar">
         <div>
             <h1>Manajemen acara</h1>
-            <p style="color:#627b89">Tambah dan kelola informasi perjalanan.</p>
+            <p class="muted">Tambah dan kelola informasi perjalanan.</p>
         </div>
         <a class="button" href="{{ route('admin.events.create') }}">+ Tambah acara</a>
     </div>
@@ -78,7 +79,8 @@
         @if ($events->isEmpty())
             <p class="empty">Belum ada acara yang cocok dengan pencarian.</p>
         @else
-            <table>
+            <div class="table-scroll">
+                <table>
                 <thead>
                 <tr>
                     <th>Nama acara</th>
@@ -94,7 +96,7 @@
                     <tr>
                         <td>
                             <strong>{{ $event->name }}</strong><br>
-                            <small style="color:#627b89">{{ $event->slug }}</small>
+                            <small class="muted">{{ $event->slug }}</small>
                         </td>
                         <td>{{ $event->location ?: '—' }}</td>
                         <td>{{ $event->starts_at?->format('d M Y H:i') ?: '—' }}</td>
@@ -119,7 +121,8 @@
                     </tr>
                 @endforeach
                 </tbody>
-            </table>
+                </table>
+            </div>
 
             <div class="pagination">{{ $events->links() }}</div>
         @endif

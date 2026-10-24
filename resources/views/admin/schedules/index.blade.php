@@ -16,6 +16,43 @@
 .schedule-alert.error{background:#fff0ef;color:#a12a23}
 .schedule-muted{color:#66808b;font-size:13px}
 .schedule-delete{background:none;border:0;color:#bf2828;cursor:pointer;padding:0;font:inherit}
+
+/* Responsive schedule management */
+.schedule-wrap {
+    width: min(100% - 36px, 1000px);
+}
+
+.schedule-panel {
+    max-width: 100%;
+    overscroll-behavior-x: contain;
+}
+
+.schedule-table {
+    min-width: 650px;
+}
+
+@media (max-width: 520px) {
+    .schedule-wrap {
+        width: calc(100% - 24px);
+        margin-top: 20px;
+        padding: 0;
+    }
+
+    .schedule-panel {
+        padding: 12px;
+    }
+
+    .schedule-actions {
+        align-items: stretch;
+    }
+
+    .schedule-actions > a {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
+}
+
 </style>
 
 <div class="schedule-wrap">

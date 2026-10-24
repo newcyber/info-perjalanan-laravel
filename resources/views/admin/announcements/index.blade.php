@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Manajemen Pengumuman — Info Perjalanan</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
         .announcement-wrap{max-width:1050px;margin:40px auto;padding:0 20px}
         .announcement-panel{background:#fff;border:1px solid #dce8eb;border-radius:14px;padding:20px;overflow-x:auto}
@@ -18,10 +17,11 @@
         .announcement-muted{color:#607d8b;font-size:13px}
         .announcement-status{font-weight:700}
     </style>
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 </head>
 <body>
-<header style="background:#fff;border-bottom:1px solid #dce8eb;padding:18px 20px">
-    <div style="max-width:1050px;margin:auto;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+<header>
+    <div class="admin-header-inner">
         <strong>Info Perjalanan · Admin</strong>
         <nav>
             <a href="{{ route('admin.dashboard') }}">Dashboard</a>
@@ -42,7 +42,7 @@
     @endif
 
     @if ($errors->any())
-        <div class="announcement-alert" style="background:#fff0f0;color:#a52222">
+        <div class="announcement-alert error" role="alert">
             {{ $errors->first() }}
         </div>
     @endif
@@ -58,6 +58,7 @@
         @if ($announcements->isEmpty())
             <p>Belum ada pengumuman untuk acara ini.</p>
         @else
+            <div class="table-scroll">
             <table class="announcement-table">
                 <thead>
                     <tr>
@@ -76,9 +77,9 @@
                             </td>
                             <td class="announcement-status">
                                 @if ($announcement->published_at && $announcement->published_at->lte(now()))
-                                    <span style="color:#087f8c">Terbit</span>
+                                    <span class="published">Terbit</span>
                                 @else
-                                    <span style="color:#9a6700">Draft / terjadwal</span>
+                                    <span class="draft">Draft / terjadwal</span>
                                 @endif
                             </td>
                             <td>
@@ -100,8 +101,9 @@
                     @endforeach
                 </tbody>
             </table>
+            </div>
 
-            <div style="margin-top:20px">{{ $announcements->links() }}</div>
+            <div class="pagination">{{ $announcements->links() }}</div>
         @endif
     </section>
 </main>

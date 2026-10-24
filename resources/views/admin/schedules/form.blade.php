@@ -14,6 +14,43 @@
 .schedule-back{color:#087f8c;text-decoration:none}
 .schedule-errors{background:#fff0ef;color:#a12a23;border-radius:8px;padding:12px 16px}
 .schedule-hint{font-size:13px;color:#66808b}
+
+/* Responsive schedule form */
+.schedule-form-wrap {
+    width: min(100% - 36px, 760px);
+}
+
+.schedule-form-card {
+    min-width: 0;
+}
+
+.schedule-field input,
+.schedule-field textarea {
+    max-width: 100%;
+}
+
+@media (max-width: 520px) {
+    .schedule-form-wrap {
+        width: calc(100% - 24px);
+        margin-top: 20px;
+        padding: 0;
+    }
+
+    .schedule-form-card {
+        padding: 18px;
+    }
+
+    .schedule-submit {
+        min-height: 46px;
+        width: 100%;
+    }
+
+    .schedule-form-wrap form > .schedule-back {
+        display: inline-block;
+        margin: 12px 0 0 !important;
+    }
+}
+
 </style>
 
 <div class="schedule-form-wrap">

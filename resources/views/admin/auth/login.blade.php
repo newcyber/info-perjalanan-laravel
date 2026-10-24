@@ -21,6 +21,7 @@
         .success { padding: 11px; border-radius: 8px; background: #eaf8ef; color: #176b3a; font-size: 14px; }
         .back { display: block; margin-top: 22px; text-align: center; color: #087f8c; text-decoration: none; font-size: 14px; }
     </style>
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 </head>
 <body>
 <main class="card">
@@ -48,7 +49,7 @@
         <label for="password">Password</label>
         <input id="password" type="password" name="password" autocomplete="current-password" required>
 
-        <button type="submit">Masuk ke dashboard</button>
+        <button class="button" type="submit">Masuk ke dashboard</button>
     </form>
 
     <a class="back" href="{{ route('home') }}">Kembali ke halaman acara</a>

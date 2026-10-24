@@ -90,3 +90,439 @@ h3 { margin: 5px 0 8px; font-size: 18px; line-height: 1.35; }
     .section-heading { align-items: flex-end; }
     h2 { font-size: 21px; }
 }
+
+/* =========================================================
+   Info Perjalanan — responsive UI polish
+   Lapisan peningkatan; mempertahankan class dan alur lama.
+   ========================================================= */
+
+:root {
+    --ink: #16313a;
+    --muted: #617780;
+    --line: #e0e9eb;
+    --surface: #ffffff;
+    --background: #f4f8f9;
+    --primary: #087f8c;
+    --primary-dark: #06636e;
+    --soft: #e8f6f5;
+    --focus-ring: rgba(8, 127, 140, .22);
+    --card-shadow: 0 5px 18px rgba(24, 59, 70, .035);
+    --card-shadow-hover: 0 12px 28px rgba(24, 59, 70, .075);
+}
+
+html {
+    min-width: 320px;
+    scroll-behavior: smooth;
+    scroll-padding-top: 20px;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a {
+    text-underline-offset: 3px;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 3px;
+}
+
+.topbar {
+    position: relative;
+    z-index: 5;
+    min-height: 64px;
+    height: auto;
+}
+
+.brand {
+    min-width: 0;
+    line-height: 1.3;
+}
+
+.brand-mark {
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(8, 127, 140, .16);
+}
+
+.container {
+    padding-bottom: 48px;
+}
+
+.hero,
+.event-hero {
+    box-shadow: var(--card-shadow);
+}
+
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero p,
+.event-description,
+.announcement-body {
+    overflow-wrap: anywhere;
+}
+
+.event-card,
+.timeline-card,
+.announcement-card,
+.panel,
+.empty-state {
+    box-shadow: var(--card-shadow);
+    transition: border-color .18s ease, box-shadow .18s ease,
+        transform .18s ease;
+}
+
+.event-card {
+    align-items: flex-start;
+}
+
+.event-card:hover,
+.timeline-card:hover,
+.announcement-card:hover {
+    border-color: #cbdfe2;
+    box-shadow: var(--card-shadow-hover);
+}
+
+.event-icon {
+    flex-shrink: 0;
+}
+
+.event-content {
+    overflow-wrap: anywhere;
+}
+
+.event-content h3 {
+    line-height: 1.4;
+}
+
+.event-meta span {
+    overflow-wrap: anywhere;
+}
+
+.status {
+    line-height: 1.6;
+}
+
+.button {
+    min-height: 46px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color .18s ease, box-shadow .18s ease,
+        transform .18s ease;
+}
+
+.button:active {
+    transform: translateY(1px);
+}
+
+.button.primary {
+    box-shadow: 0 3px 8px rgba(8, 127, 140, .12);
+}
+
+.button.primary:hover {
+    box-shadow: 0 5px 14px rgba(8, 127, 140, .2);
+}
+
+.form-group input {
+    min-height: 49px;
+    appearance: none;
+    transition: border-color .18s ease, box-shadow .18s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px var(--focus-ring);
+}
+
+.form-group input::placeholder {
+    color: #899ba1;
+}
+
+.form-group label {
+    line-height: 1.5;
+}
+
+.alert {
+    overflow-wrap: anywhere;
+}
+
+.alert:focus {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+}
+
+.timeline-card {
+    align-items: flex-start;
+}
+
+.timeline-card > div:last-child {
+    flex: 1;
+    overflow-wrap: anywhere;
+}
+
+.schedule-time {
+    display: inline-block;
+    margin-bottom: 4px;
+    line-height: 1.5;
+}
+
+.announcement-body {
+    line-height: 1.75;
+}
+
+.back-link {
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.footer {
+    line-height: 1.7;
+}
+
+@media (min-width: 900px) {
+    .container {
+        max-width: 1000px;
+    }
+
+    .event-card {
+        padding: 26px;
+    }
+
+    .panel {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    .topbar {
+        min-height: 60px;
+        padding: 10px 14px;
+    }
+
+    .brand {
+        gap: 8px;
+        font-size: 14px;
+    }
+
+    .brand-mark {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+    }
+
+    .topbar-note {
+        max-width: 96px;
+        text-align: right;
+        line-height: 1.4;
+    }
+
+    .container {
+        width: calc(100% - 28px);
+        padding-top: 18px;
+        padding-bottom: 36px;
+    }
+
+    .hero {
+        padding: 26px 20px;
+    }
+
+    h1 {
+        font-size: clamp(28px, 8vw, 36px);
+        line-height: 1.16;
+        letter-spacing: -.9px;
+        overflow-wrap: anywhere;
+    }
+
+    h2 {
+        font-size: 21px;
+        letter-spacing: -.3px;
+    }
+
+    .section {
+        margin-top: 28px;
+    }
+
+    .section-heading {
+        align-items: center;
+        gap: 10px;
+    }
+
+    .section-heading > div {
+        min-width: 0;
+    }
+
+    .count {
+        flex-shrink: 0;
+        padding: 5px 9px;
+        font-size: 11px;
+    }
+
+    .event-card {
+        gap: 12px;
+        padding: 16px;
+        margin-bottom: 12px;
+    }
+
+    .event-content h3 {
+        margin-top: 8px;
+        font-size: 17px;
+    }
+
+    .event-content > p {
+        font-size: 14px;
+        line-height: 1.65;
+    }
+
+    .event-meta {
+        gap: 8px;
+        font-size: 13px;
+    }
+
+    .event-content .button {
+        width: 100%;
+    }
+
+    .event-hero {
+        padding: 22px 18px;
+    }
+
+    .event-hero .location {
+        font-size: 14px;
+        line-height: 1.65;
+        overflow-wrap: anywhere;
+    }
+
+    .panel {
+        padding: 20px 16px;
+        border-radius: 16px;
+    }
+
+    .registration-panel h2 {
+        line-height: 1.35;
+    }
+
+    .form-group {
+        margin: 16px 0;
+    }
+
+    .form-group input {
+        font-size: 16px;
+    }
+
+    .button {
+        min-height: 48px;
+        padding: 12px 15px;
+    }
+
+    .timeline-card,
+    .announcement-card {
+        gap: 12px;
+        padding: 17px 15px;
+    }
+
+    .timeline-card h3,
+    .announcement-card h3 {
+        font-size: 16px;
+        overflow-wrap: anywhere;
+    }
+
+    .empty-state {
+        padding: 30px 17px;
+    }
+
+    .pagination nav > div:last-child {
+        gap: 6px;
+    }
+
+    .pagination a,
+    .pagination span[aria-current],
+    .pagination span[aria-disabled] {
+        min-width: 38px;
+        min-height: 38px;
+        padding: 8px 10px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 360px) {
+    .container {
+        width: calc(100% - 22px);
+    }
+
+    .topbar {
+        padding-right: 11px;
+        padding-left: 11px;
+    }
+
+    .brand {
+        font-size: 13px;
+    }
+
+    .topbar-note {
+        font-size: 10px;
+    }
+
+    .event-card {
+        gap: 10px;
+        padding: 13px;
+    }
+
+    .event-icon {
+        flex-basis: 32px;
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+        font-size: 18px;
+    }
+
+    .hero {
+        padding: 23px 16px;
+    }
+
+    .event-hero {
+        padding: 20px 15px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

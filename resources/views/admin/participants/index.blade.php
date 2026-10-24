@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Daftar Peserta — Info Perjalanan</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
         .wrap{max-width:1100px;margin:36px auto;padding:0 18px}
         .panel{background:#fff;border:1px solid #dce8eb;border-radius:14px;padding:20px;overflow-x:auto}
@@ -18,10 +17,11 @@
         .muted{font-size:13px;color:#607d8b}
         .count{display:inline-block;background:#e8f5f6;padding:8px 12px;border-radius:8px;color:#086b75;font-weight:700}
     </style>
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 </head>
 <body>
-<header style="background:#fff;border-bottom:1px solid #dce8eb;padding:18px 20px">
-    <div style="max-width:1100px;margin:auto;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+<header>
+    <div class="admin-header-inner">
         <strong>Info Perjalanan · Admin</strong>
         <nav>
             <a href="{{ route('admin.dashboard') }}">Dashboard</a>
@@ -55,6 +55,7 @@
         @if ($registrations->isEmpty())
             <p>Tidak ada peserta yang cocok dengan pencarian.</p>
         @else
+            <div class="table-scroll">
             <table class="table">
                 <thead>
                     <tr>
@@ -79,7 +80,8 @@
                     @endforeach
                 </tbody>
             </table>
-            <div style="margin-top:20px">{{ $registrations->links() }}</div>
+            </div>
+            <div class="pagination">{{ $registrations->links() }}</div>
         @endif
     </section>
 </main>

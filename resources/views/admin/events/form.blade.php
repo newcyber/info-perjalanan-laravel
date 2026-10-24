@@ -21,6 +21,7 @@
         .secondary { background: white; color: #183344; border: 1px solid #dce9eb; }
         @media (max-width: 600px) { .grid { grid-template-columns: 1fr; gap: 0; } .panel { padding: 18px; } }
     </style>
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 </head>
 <body>
 <header><strong>Info Perjalanan · Admin</strong></header>
@@ -30,7 +31,7 @@
         <h1>{{ $formTitle }}</h1>
 
         @if ($errors->any())
-            <div role="alert" style="padding:12px;background:#fff0ef;border-radius:8px;color:#a52b27">
+            <div class="alert error" role="alert">
                 <strong>Periksa kembali data berikut:</strong>
                 <ul>
                     @foreach ($errors->all() as $error)

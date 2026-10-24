@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $formTitle }} — Info Perjalanan</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
         .form-wrap{max-width:760px;margin:35px auto;padding:0 20px}
         .form-panel{background:#fff;border:1px solid #dce8eb;border-radius:14px;padding:24px}
@@ -17,10 +16,11 @@
         .form-errors{background:#fff0f0;color:#a52222;border-radius:9px;padding:12px 18px;margin-bottom:18px}
         .form-muted{font-size:13px;color:#607d8b}
     </style>
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 </head>
 <body>
-<header style="background:#fff;border-bottom:1px solid #dce8eb;padding:18px 20px">
-    <div style="max-width:760px;margin:auto"><strong>Info Perjalanan · Admin</strong></div>
+<header>
+    <div class="admin-header-inner"><strong>Info Perjalanan · Admin</strong></div>
 </header>
 
 <main class="form-wrap">
@@ -31,7 +31,7 @@
     <p>Acara: <strong>{{ $event->name }}</strong></p>
 
     @if ($errors->any())
-        <div class="form-errors">
+        <div class="form-errors alert error" role="alert">
             <strong>Periksa kembali formulir:</strong>
             <ul>
                 @foreach ($errors->all() as $error)
@@ -79,7 +79,7 @@
             <p class="form-muted">Kosongkan untuk menerbitkan sekarang jika statusnya Terbitkan. Waktu mendatang tidak akan terlihat sebelum waktunya tiba.</p>
         </div>
 
-        <button class="form-button" type="submit">Simpan pengumuman</button>
+        <button class="form-button button" type="submit">Simpan pengumuman</button>
         <a class="form-cancel" href="{{ route('admin.events.announcements.index', $event) }}">Batal</a>
     </form>
 </main>

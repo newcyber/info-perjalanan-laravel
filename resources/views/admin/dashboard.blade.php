@@ -32,6 +32,7 @@
             header { padding: 16px 20px; }
         }
     </style>
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 </head>
 <body>
 <header>
@@ -46,7 +47,7 @@
     <h1>Dashboard administrator</h1>
     <p class="muted">Selamat datang, {{ auth()->user()->name }}. Berikut ringkasan data perjalanan.</p>
 
-    <p><a href="{{ route('admin.events.index') }}" style="display:inline-block;padding:12px 16px;background:#087f8c;color:#fff;border-radius:9px;text-decoration:none;font-weight:700">Kelola Acara</a></p>
+    <p><a class="button" href="{{ route('admin.events.index') }}">Kelola Acara</a></p>
 
     <section class="stats">
         <div class="stat"><span>Total acara</span><strong>{{ $eventCount }}</strong></div>
