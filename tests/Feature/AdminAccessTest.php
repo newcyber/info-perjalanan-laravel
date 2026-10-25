@@ -38,4 +38,73 @@ class AdminAccessTest extends TestCase
 
         $response->assertOk();
     }
+
+    public function test_admin_can_log_in_with_valid_credentials(): void
+    {
+        $admin = User::factory()->create([
+            'name' => 'Test Admin',
+            'email' => 'admin-test@example.com',
+            'password' => 'correct-password',
+            'role' => 'admin',
+        ]);
+
+        $response = $this->post(route('admin.login.store'), [
+            'email' => 'admin-test@example.com',
+            'password' => 'correct-password',
+        ]);
+
+        $response->assertRedirect(route('admin.dashboard'));
+        $this->assertAuthenticatedAs($admin);
+    }
+
+    public function test_admin_login_rejects_invalid_password(): void
+    {
+        User::factory()->create([
+            'email' => 'admin-test@example.com',
+            'password' => 'correct-password',
+            'role' => 'admin',
+        ]);
+
+        $response = $this->post(route('admin.login.store'), [
+            'email' => 'admin-test@example.com',
+            'password' => 'wrong-password',
+        ]);
+
+        $response->assertSessionHasErrors('email');
+        $this->assertGuest();
+    }
+
+    public function test_non_admin_cannot_log_in_to_admin_panel(): void
+    {
+        User::factory()->create([
+            'email' => 'participant-test@example.com',
+            'password' => 'correct-password',
+            'role' => 'participant',
+        ]);
+
+        $response = $this->post(route('admin.login.store'), [
+            'email' => 'participant-test@example.com',
+            'password' => 'correct-password',
+        ]);
+
+        $response->assertSessionHasErrors('email');
+        $this->assertGuest();
+    }
+
+    public function test_admin_can_log_out_and_cannot_access_dashboard_afterward(): void
+    {
+        $admin = User::factory()->create([
+            'role' => 'admin',
+        ]);
+
+        $this->actingAs($admin);
+
+        $response = $this->post(route('admin.logout'));
+
+        $response->assertRedirect(route('admin.login'));
+        $this->assertGuest();
+
+        $this->get(route('admin.dashboard'))
+            ->assertRedirect(route('admin.login'));
+    }
 }
