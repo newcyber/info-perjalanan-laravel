@@ -107,4 +107,21 @@ class AdminAccessTest extends TestCase
         $this->get(route('admin.dashboard'))
             ->assertRedirect(route('admin.login'));
     }
+
+    public function test_admin_login_is_rate_limited_after_five_attempts(): void
+    {
+        for ($attempt = 1; $attempt <= 5; $attempt++) {
+            $this->post(route('admin.login.store'), [
+                'email' => 'rate-limit-test@example.com',
+                'password' => 'wrong-password',
+            ]);
+        }
+
+        $response = $this->post(route('admin.login.store'), [
+            'email' => 'rate-limit-test@example.com',
+            'password' => 'wrong-password',
+        ]);
+
+        $response->assertTooManyRequests();
+    }
 }
